@@ -1,11 +1,19 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, CalendarCheck, Send, Workflow } from "lucide-react";
+import { MessageSquare, CalendarCheck, Send, Workflow, type LucideIcon } from "lucide-react";
 import { IndexLabel } from "@/components/ui/index-label";
 import { CornerBrackets } from "@/components/ui/corner-brackets";
 
-const services = [
+type Service = {
+  icon: LucideIcon;
+  title: string;
+  story: string;
+  bullets: string[];
+  tools: string[];
+};
+
+const services: Service[] = [
   {
     icon: MessageSquare,
     title: "E-mail & WhatsApp AI-Agent",
@@ -56,6 +64,46 @@ const services = [
   },
 ];
 
+function ServiceDetailBody({ service, showTitle = true }: { service: Service; showTitle?: boolean }) {
+  const Icon = service.icon;
+  return (
+    <>
+      <div className="flex items-start gap-5 mb-6">
+        <div className="p-3.5 rounded-xl bg-[#00d4ff]/10 border border-[#00d4ff]/20 flex-shrink-0">
+          <Icon size={24} className="text-[#00d4ff]" />
+        </div>
+        {showTitle && (
+          <h3 className="font-heading font-medium uppercase tracking-tight text-xl text-white leading-snug pt-1">
+            {service.title}
+          </h3>
+        )}
+      </div>
+
+      <p className="text-slate-400 leading-relaxed mb-6 text-base">{service.story}</p>
+
+      <ul className="space-y-2.5 mb-7">
+        {service.bullets.map((bullet) => (
+          <li key={bullet} className="flex items-start gap-3 text-sm text-slate-300">
+            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#00d4ff] flex-shrink-0" />
+            {bullet}
+          </li>
+        ))}
+      </ul>
+
+      <div className="flex flex-wrap gap-2">
+        {service.tools.map((tool) => (
+          <span
+            key={tool}
+            className="text-[11px] font-mono text-[#00d4ff]/70 bg-[#00d4ff]/5 border border-[#00d4ff]/15 px-2.5 py-1 rounded-full"
+          >
+            {tool}
+          </span>
+        ))}
+      </div>
+    </>
+  );
+}
+
 export default function Services() {
   const [active, setActive] = useState(0);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -80,7 +128,6 @@ export default function Services() {
   }, []);
 
   const activeService = services[active];
-  const ActiveIcon = activeService.icon;
 
   return (
     <section id="diensten" className="px-4 py-36 bg-[#050508] relative">
@@ -112,10 +159,11 @@ export default function Services() {
           </motion.p>
         </div>
 
-        {/* Sticky detail-paneel + scroll-lijst */}
+        {/* Sticky detail-paneel (alleen desktop) + scroll-lijst */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-          {/* Sticky paneel: volledig verhaal van de actieve dienst */}
-          <div className="md:sticky md:top-28 self-start">
+          {/* Sticky paneel: volledig verhaal van de actieve dienst, alleen op md+.
+              Op mobiel komt de inhoud i.p.v. hiervan direct onder het aangeklikte item. */}
+          <div className="hidden md:block md:sticky md:top-28 self-start">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeService.title}
@@ -125,45 +173,14 @@ export default function Services() {
                 transition={{ duration: 0.35 }}
                 className="glass rounded-2xl p-8 md:p-10"
               >
-                <div className="flex items-start gap-5 mb-6">
-                  <div className="p-3.5 rounded-xl bg-[#00d4ff]/10 border border-[#00d4ff]/20 flex-shrink-0">
-                    <ActiveIcon size={24} className="text-[#00d4ff]" />
-                  </div>
-                  <h3 className="font-heading font-medium uppercase tracking-tight text-xl text-white leading-snug pt-1">
-                    {activeService.title}
-                  </h3>
-                </div>
-
-                <p className="text-slate-400 leading-relaxed mb-6 text-base">
-                  {activeService.story}
-                </p>
-
-                <ul className="space-y-2.5 mb-7">
-                  {activeService.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-3 text-sm text-slate-300">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#00d4ff] flex-shrink-0" />
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-2">
-                  {activeService.tools.map((tool) => (
-                    <span
-                      key={tool}
-                      className="text-[11px] font-mono text-[#00d4ff]/70 bg-[#00d4ff]/5 border border-[#00d4ff]/15 px-2.5 py-1 rounded-full"
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
+                <ServiceDetailBody service={activeService} />
               </motion.div>
             </AnimatePresence>
 
             <IndexLabel current={active + 1} total={services.length} className="block mt-6" />
           </div>
 
-          {/* Scroll-lijst met dienst-namen */}
+          {/* Lijst met dienst-namen */}
           <div className="flex flex-col">
             {services.map((service, i) => {
               const isActive = i === active;
@@ -173,14 +190,15 @@ export default function Services() {
                   ref={(el) => {
                     itemRefs.current[i] = el;
                   }}
-                  className="min-h-[40vh] md:min-h-[55vh] flex items-center"
+                  className="py-6 md:py-0 md:min-h-[55vh] flex flex-col md:items-center md:justify-center border-b border-white/5 md:border-none last:border-none"
                 >
                   {isActive ? (
-                    <CornerBrackets color="#00d4ff">
+                    <CornerBrackets color="#00d4ff" className="self-start md:self-auto">
                       <button
-                        onClick={() =>
-                          itemRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "center" })
-                        }
+                        onClick={() => {
+                          setActive(i);
+                          itemRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }}
                         className="font-heading font-medium uppercase tracking-tight text-2xl sm:text-3xl text-[#00d4ff] text-left px-2 py-1"
                       >
                         {service.title}
@@ -188,14 +206,33 @@ export default function Services() {
                     </CornerBrackets>
                   ) : (
                     <button
-                      onClick={() =>
-                        itemRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "center" })
-                      }
+                      onClick={() => {
+                        setActive(i);
+                        itemRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "center" });
+                      }}
                       className="font-heading font-medium uppercase tracking-tight text-2xl sm:text-3xl text-slate-600 hover:text-slate-400 transition-colors text-left"
                     >
                       {service.title}
                     </button>
                   )}
+
+                  {/* Mobiel: inhoud direct onder het aangeklikte item, geen scroll omhoog nodig */}
+                  <AnimatePresence initial={false}>
+                    {isActive && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden md:hidden"
+                      >
+                        <div className="pt-6">
+                          <ServiceDetailBody service={service} showTitle={false} />
+                          <IndexLabel current={i + 1} total={services.length} className="block mt-2" />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}
