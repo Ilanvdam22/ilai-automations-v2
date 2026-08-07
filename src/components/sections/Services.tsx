@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, CalendarCheck, Send, Workflow } from "lucide-react";
-import { Headline } from "@/components/ui/headline";
 import { IndexLabel } from "@/components/ui/index-label";
 import { CornerBrackets } from "@/components/ui/corner-brackets";
 
