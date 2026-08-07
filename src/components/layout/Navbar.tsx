@@ -35,10 +35,10 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-baseline gap-1.5">
-          <span className="text-2xl font-bold text-[#00d4ff] tracking-tight glow-text">
+          <span className="font-heading font-medium text-2xl text-[#00d4ff] uppercase tracking-wide glow-text">
             ILAI
           </span>
-          <span className="text-sm text-slate-400 font-light tracking-widest uppercase">
+          <span className="font-mono text-[10px] text-slate-400 font-light tracking-widest uppercase">
             Automations
           </span>
         </Link>
@@ -51,7 +51,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm transition-colors duration-200 relative group ${
+                className={`font-mono text-xs uppercase tracking-widest transition-colors duration-200 relative group ${
                   isActive ? "text-[#00d4ff]" : "text-slate-400 hover:text-white"
                 }`}
               >
@@ -67,7 +67,7 @@ export default function Navbar() {
           })}
           <Link
             href="/contact"
-            className="text-sm font-semibold bg-[#00d4ff] text-black px-5 py-2 rounded-full hover:bg-[#00d4ff]/90 transition-all duration-200 glow-blue"
+            className="font-mono text-xs uppercase tracking-widest font-semibold bg-[#00d4ff] text-black px-5 py-2 rounded-full hover:bg-[#00d4ff]/90 transition-all duration-200 glow-blue"
           >
             Plan een gesprek
           </Link>
@@ -100,7 +100,7 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`py-3 border-b border-white/5 text-sm transition-colors ${
+                    className={`py-3 border-b border-white/5 font-mono text-xs uppercase tracking-widest transition-colors ${
                       isActive ? "text-[#00d4ff] font-semibold" : "text-slate-300 hover:text-white"
                     }`}
                     onClick={() => setMenuOpen(false)}
@@ -111,7 +111,7 @@ export default function Navbar() {
               })}
               <Link
                 href="/contact"
-                className="text-sm font-semibold bg-[#00d4ff] text-black px-5 py-3 rounded-full text-center hover:bg-[#00d4ff]/90 transition-all duration-200 mt-3"
+                className="font-mono text-xs uppercase tracking-widest font-semibold bg-[#00d4ff] text-black px-5 py-3 rounded-full text-center hover:bg-[#00d4ff]/90 transition-all duration-200 mt-3"
                 onClick={() => setMenuOpen(false)}
               >
                 Plan een gesprek

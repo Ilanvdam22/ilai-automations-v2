@@ -2,16 +2,11 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import OrbitingCirclesGlobe from "@/components/ui/orbiting-circles-02";
 
-const GenerativeArtScene = dynamic(
-  () => import("@/components/ui/anomalous-matter-hero").then((m) => m.GenerativeArtScene),
-  { ssr: false }
-);
-
-const line1 = "Jij zet mensen in beweging,".split(" ");
-const line2 = "wij zetten jouw bedrijf in beweging.".split(" ");
+const line1 = "Jouw business verdient".split(" ");
+const line2 = "een team dat nooit stopt.".split(" ");
+const subline = "Wij bouwen een AI-workflow die 24/7 voor jou werkt.";
 
 const wordVariants = {
   hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
@@ -26,10 +21,10 @@ const wordVariants = {
 export default function Hero() {
   return (
     <div className="relative min-h-screen bg-[#050508] overflow-hidden">
-      {/* Sphere achtergrond */}
-      <Suspense fallback={<div className="absolute inset-0 bg-[#050508]" />}>
-        <GenerativeArtScene />
-      </Suspense>
+      {/* Orbiting-circles globe i.p.v. 3D-bol */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <OrbitingCirclesGlobe />
+      </div>
 
       {/* Gradient boven */}
       <div className="absolute top-0 left-0 right-0 h-72 bg-gradient-to-b from-[#050508] via-[#050508]/85 to-transparent z-[1] pointer-events-none" />
@@ -46,11 +41,11 @@ export default function Hero() {
         >
           <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-[#00d4ff]/40 text-[#00d4ff] text-xs font-mono tracking-widest bg-[#00d4ff]/5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00d4ff] mr-2 animate-pulse" />
-            AI-automatisering voor de bewegingssector
+            AI-automatisering voor B2B-bedrijven
           </span>
         </motion.div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-snug overflow-visible">
+        <h1 className="font-heading font-medium uppercase text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white leading-[0.95] overflow-visible">
           <span className="block">
             {line1.map((word, i) => (
               <motion.span
@@ -59,7 +54,7 @@ export default function Hero() {
                 variants={wordVariants}
                 initial="hidden"
                 animate="visible"
-                className={`inline-block mr-[0.25em] ${word === "beweging," ? "text-[#00d4ff] glow-text" : ""}`}
+                className={`inline-block mr-[0.25em] ${word === "business" ? "text-[#00d4ff] glow-text" : ""}`}
               >
                 {word}
               </motion.span>
@@ -68,7 +63,7 @@ export default function Hero() {
           <span className="block">
             {line2.map((word, i) => {
               const globalIdx = line1.length + i;
-              const isBeweging = word === "beweging.";
+              const isHighlighted = word === "nooit" || word === "stopt.";
               return (
                 <motion.span
                   key={`l2-${i}`}
@@ -76,7 +71,7 @@ export default function Hero() {
                   variants={wordVariants}
                   initial="hidden"
                   animate="visible"
-                  className={`inline-block mr-[0.25em] pb-1 ${isBeweging ? "gradient-text" : ""}`}
+                  className={`inline-block mr-[0.25em] pb-1 ${isHighlighted ? "gradient-text" : ""}`}
                 >
                   {word}
                 </motion.span>
@@ -84,20 +79,19 @@ export default function Hero() {
             })}
           </span>
         </h1>
+
+        <motion.p
+          className="mt-5 text-lg sm:text-xl md:text-2xl text-slate-300 font-normal normal-case"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.5 }}
+        >
+          {subline}
+        </motion.p>
       </div>
 
-      {/* Subtekst + knoppen */}
+      {/* Knoppen */}
       <div className="absolute bottom-0 left-0 right-0 z-20 text-center px-6 pb-16">
-        <motion.p
-          className="text-slate-400 text-lg sm:text-xl max-w-xl mx-auto leading-relaxed mb-8"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.6 }}
-        >
-          ILAI Automations automatiseert je leads, intakes en opvolging
-          zodat geen aanvraag meer verdwijnt en jij minder achter de laptop hangt.
-        </motion.p>
-
         <motion.div
           className="flex flex-col sm:flex-row gap-4 items-center justify-center"
           initial={{ opacity: 0, y: 24 }}

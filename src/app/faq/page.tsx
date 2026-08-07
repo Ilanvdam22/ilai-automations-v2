@@ -3,10 +3,11 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FAQ from "@/components/sections/FAQ";
 import { Mail, Phone } from "lucide-react";
+import { Headline } from "@/components/ui/headline";
 
 export const metadata: Metadata = {
   title: "Veelgestelde vragen | ILAI Automations",
-  description: "Antwoorden op de meest gestelde vragen over AI-automatisering voor de bewegingssector.",
+  description: "Antwoorden op de meest gestelde vragen over AI-automatisering voor B2B-bedrijven.",
 };
 
 export default function FAQPage() {
@@ -22,9 +23,9 @@ export default function FAQPage() {
             <div className="glass rounded-2xl p-10 flex flex-col md:flex-row items-start gap-10">
               {/* Links: tekst */}
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white mb-3">
+                <Headline as="h3" size="md" className="text-white mb-3">
                   Staat je vraag er niet bij?
-                </h3>
+                </Headline>
                 <p className="text-slate-400 leading-relaxed">
                   We beantwoorden hem graag persoonlijk. Stuur ons een berichtje via WhatsApp of
                   e-mail. We reageren binnen 2 minuten.

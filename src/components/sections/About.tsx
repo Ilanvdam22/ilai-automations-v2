@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import AIChatDemo from "@/components/ui/ai-chat-demo";
 import TiltCard from "@/components/ui/tilt-card";
+import { Headline } from "@/components/ui/headline";
 
 const bullets = [
   "24/7 beschikbaar, ook in het weekend",
@@ -34,16 +35,17 @@ export default function About() {
               Over ILAI Automations
             </motion.span>
 
-            <motion.h1
-              className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-8 leading-tight"
+            <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Nooit meer een aanvraag die in een{" "}
-              <span className="gradient-text">volle inbox</span> verdwijnt.
-            </motion.h1>
+              <Headline as="h1" size="xl" className="text-white mb-8">
+                Nooit meer een aanvraag die in een{" "}
+                <span className="gradient-text">volle inbox</span> verdwijnt.
+              </Headline>
+            </motion.div>
 
             <motion.p
               className="text-slate-400 leading-relaxed mb-10 text-lg"
@@ -52,11 +54,10 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Elke week laten sportscholen, personal trainers, fysiotherapeuten en andere
-              bewegingsprofessionals geld liggen, niet omdat ze slecht zijn in hun vak,
-              maar omdat opvolging tijdrovend is. ILAI Automations lost dat op. Wij bouwen
-              AI-systemen die jouw DM&apos;s beantwoorden, aanvragen kwalificeren en nieuwe
-              klanten door de intake begeleiden. Volledig op de achtergrond. Altijd aan.
+              Elke week laten bedrijven omzet liggen, niet omdat hun product of dienst niet
+              goed is, maar omdat opvolging tijdrovend is. ILAI Automations lost dat op. Wij
+              bouwen AI-systemen die jouw berichten beantwoorden, leads kwalificeren en nieuwe
+              klanten actief benaderen. Volledig op de achtergrond. Altijd aan.
             </motion.p>
 
             <motion.ul

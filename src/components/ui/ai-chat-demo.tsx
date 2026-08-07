@@ -9,12 +9,12 @@ type Message = {
 };
 
 const conversation: Message[] = [
-  { id: 1, from: "user", text: "Hoi! Ik wil graag een proefles boeken 💪" },
-  { id: 2, from: "ai", text: "Hey! Super dat je interesse hebt 🔥 Voor welke dag past het jou het beste?" },
-  { id: 3, from: "user", text: "Zaterdag ochtend" },
-  { id: 4, from: "ai", text: "Top! Ik heb nog plekken op zaterdag 10:00 en 11:30. Welke past?" },
-  { id: 5, from: "user", text: "10:00 graag!" },
-  { id: 6, from: "ai", text: "✅ Geregeld! Je proefles staat op zaterdag 10:00. Je ontvangt een bevestiging via WhatsApp. Tot dan 👊" },
+  { id: 1, from: "user", text: "Hoi! Ik wil graag meer weten over jullie diensten 👋" },
+  { id: 2, from: "ai", text: "Hey! Leuk dat je interesse hebt 🙌 Waarvoor zoek je vooral een oplossing?" },
+  { id: 3, from: "user", text: "We missen veel leads door trage opvolging" },
+  { id: 4, from: "ai", text: "Helder! Ik kan je inplannen voor een gratis gesprek. Past donderdag 14:00 of vrijdag 10:00?" },
+  { id: 5, from: "user", text: "Donderdag 14:00 graag!" },
+  { id: 6, from: "ai", text: "✅ Geregeld! Je gesprek staat op donderdag 14:00. Je ontvangt een bevestiging via e-mail. Tot dan!" },
 ];
 
 // Time between messages (ms)

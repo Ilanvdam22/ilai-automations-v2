@@ -12,19 +12,19 @@ export default function Footer() {
           {/* Logo + tagline */}
           <div className="md:col-span-1">
             <div className="flex items-baseline gap-1.5 mb-3">
-              <span className="text-xl font-bold text-[#00d4ff]">ILAI</span>
-              <span className="text-xs text-slate-400 tracking-widest uppercase">
+              <span className="font-heading font-medium text-xl text-[#00d4ff] uppercase tracking-wide">ILAI</span>
+              <span className="font-mono text-[10px] text-slate-400 tracking-widest uppercase">
                 Automations
               </span>
             </div>
             <p className="text-slate-500 text-sm leading-relaxed">
-              AI-automatisering voor de bewegingssector in Nederland.
+              AI-automatisering voor B2B-bedrijven in Nederland.
             </p>
           </div>
 
           {/* Navigatie */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4 tracking-wider uppercase">
+            <h4 className="font-mono text-white text-xs mb-4 tracking-widest uppercase">
               Navigatie
             </h4>
             <ul className="space-y-2.5">
@@ -48,15 +48,15 @@ export default function Footer() {
 
           {/* Diensten */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4 tracking-wider uppercase">
+            <h4 className="font-mono text-white text-xs mb-4 tracking-widest uppercase">
               Diensten
             </h4>
             <ul className="space-y-2.5">
               {[
-                "AI DM & WhatsApp Assistent",
-                "Proefles & Intake Flows",
-                "Lead Nurturing & CRM",
-                "Onboarding & Ledenbeheer",
+                "E-mail & WhatsApp AI-Agent",
+                "Leadopvolging & Communicatie",
+                "Cold Outreach (LinkedIn & E-mail)",
+                "CRM & Workflow-koppelingen",
               ].map((item) => (
                 <li key={item}>
                   <span className="text-slate-400 text-sm">{item}</span>
@@ -67,7 +67,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold text-sm mb-4 tracking-wider uppercase">
+            <h4 className="font-mono text-white text-xs mb-4 tracking-widest uppercase">
               Contact
             </h4>
             <ul className="space-y-3">

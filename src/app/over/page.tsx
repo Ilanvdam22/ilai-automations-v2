@@ -5,7 +5,7 @@ import About from "@/components/sections/About";
 
 export const metadata: Metadata = {
   title: "Over ons | ILAI Automations",
-  description: "Leer meer over ILAI Automations en hoe wij bedrijven in de bewegingssector helpen met AI-automatisering.",
+  description: "Leer meer over ILAI Automations en hoe wij B2B-bedrijven helpen met AI-automatisering voor leads, opvolging en outreach.",
 };
 
 const stats = [
@@ -27,13 +27,13 @@ export default function OverPage() {
             <span className="inline-block text-xs font-mono tracking-widest text-[#00d4ff] border border-[#00d4ff]/30 px-4 py-1.5 rounded-full mb-8 bg-[#00d4ff]/5">
               Onze missie
             </span>
-            <blockquote className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-snug mb-8">
-              &ldquo;Elke ondernemer in de bewegingssector verdient meer tijd voor zijn vak
+            <blockquote className="font-heading font-medium uppercase tracking-tight leading-[0.95] text-3xl sm:text-4xl md:text-5xl text-white mb-8">
+              &ldquo;Elke ondernemer verdient meer tijd voor zijn bedrijf,{" "}
               <span className="gradient-text">niet voor zijn inbox.</span>&rdquo;
             </blockquote>
             <p className="text-slate-400 text-lg leading-relaxed">
-              ILAI Automations is opgericht vanuit één overtuiging: mensen die anderen in beweging brengen,
-              moeten niet vastzitten aan administratie en opvolging. Wij nemen dat over, met AI die
+              ILAI Automations is opgericht vanuit één overtuiging: ondernemers die hun bedrijf
+              laten groeien, moeten niet vastzitten aan administratie en opvolging. Wij nemen dat over, met AI die
               nooit slaapt, nooit vergeet en altijd op tijd reageert.
             </p>
           </div>
@@ -45,7 +45,7 @@ export default function OverPage() {
             {stats.map((stat) => (
               <div key={stat.label} className="flex flex-col items-center gap-3">
                 <span className="text-5xl font-black text-[#00d4ff] glow-text">{stat.value}</span>
-                <span className="text-slate-500 text-sm max-w-[160px]">{stat.label}</span>
+                <span className="font-mono uppercase tracking-widest text-slate-500 text-xs max-w-[160px]">{stat.label}</span>
               </div>
             ))}
           </div>

@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Phone, Wrench, ClipboardCheck, Sliders, Rocket } from "lucide-react";
 import TiltCard from "@/components/ui/tilt-card";
+import { Headline } from "@/components/ui/headline";
 
 const steps = [
   {
@@ -51,17 +52,18 @@ export default function Process() {
           >
             Hoe het werkt
           </motion.span>
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white tracking-tight leading-tight"
+          <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Van gesprek tot{" "}
-            <span className="gradient-text">automatisering</span>
-            <br />in 5 stappen.
-          </motion.h1>
+            <Headline as="h1" size="xl" className="text-white">
+              Van gesprek tot{" "}
+              <span className="gradient-text">automatisering</span>
+              <br />in 5 stappen.
+            </Headline>
+          </motion.div>
         </div>
 
         {/* Timeline */}
@@ -106,7 +108,9 @@ export default function Process() {
 
                   {/* Card */}
                   <TiltCard maxTilt={6} scale={1.02} className="flex-1 glass rounded-2xl p-8 z-10">
-                    <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                    <h3 className="font-heading font-medium uppercase tracking-tight text-xl text-white mb-3">
+                      {step.title}
+                    </h3>
                     <p className="text-slate-400 leading-relaxed">{step.description}</p>
                   </TiltCard>
                 </motion.div>

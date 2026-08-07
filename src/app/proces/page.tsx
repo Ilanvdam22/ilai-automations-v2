@@ -3,6 +3,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Process from "@/components/sections/Process";
 import { Check } from "lucide-react";
+import { Headline } from "@/components/ui/headline";
 
 export const metadata: Metadata = {
   title: "Ons Proces | ILAI Automations",
@@ -30,9 +31,9 @@ export default function ProcesPage() {
               <span className="inline-block text-xs font-mono tracking-widest text-[#00d4ff] border border-[#00d4ff]/30 px-4 py-1.5 rounded-full mb-5 bg-[#00d4ff]/5">
                 Onze garantie
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              <Headline size="lg" className="text-white">
                 Wat je van ons mag verwachten.
-              </h2>
+              </Headline>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {guarantees.map((g) => (

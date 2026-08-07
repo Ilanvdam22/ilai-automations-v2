@@ -3,6 +3,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import TiltCard from "@/components/ui/tilt-card";
+import { Headline } from "@/components/ui/headline";
+import { IndexLabel } from "@/components/ui/index-label";
 
 const faqs = [
   {
@@ -21,9 +23,9 @@ const faqs = [
       "Nee. Wij regelen alles technisch van A tot Z. Jij hoeft alleen te vertellen wat je wilt bereiken, wij zorgen dat het werkt.",
   },
   {
-    question: "Werkt dit ook voor kleine bedrijven in de bewegingssector?",
+    question: "Werkt dit ook voor kleine bedrijven?",
     answer:
-      "Absoluut. We werken met sportscholen, personal trainers, fysiotherapeuten, yogastudio's en meer. Juist voor solo-ondernemers en kleine studio's is automatisering het meest waardevol. Het geeft jou je tijd terug.",
+      "Absoluut. We werken met dienstverleners, bureaus, makelaars, e-commerce en andere B2B-bedrijven. Juist voor solo-ondernemers en kleine teams is automatisering het meest waardevol. Het geeft jou je tijd terug.",
   },
   {
     question: "Wat als de automatisering niet doet wat ik wil?",
@@ -69,23 +71,22 @@ export default function FAQ() {
           >
             Veelgestelde vragen
           </motion.span>
-          <motion.h1
-            className="text-4xl sm:text-5xl font-bold text-white tracking-tight"
+          <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Alles wat je{" "}
-            <span className="gradient-text">wil weten.</span>
-          </motion.h1>
+            <Headline as="h1" size="xl" className="text-white">
+              Alles wat je <span className="gradient-text">wil weten.</span>
+            </Headline>
+          </motion.div>
         </div>
 
         {/* Accordion */}
         <div className="space-y-4">
           {faqs.map((faq, i) => {
             const isOpen = open === i;
-            const num = String(i + 1).padStart(2, "0");
             return (
               <motion.div
                 key={faq.question}
@@ -106,9 +107,12 @@ export default function FAQ() {
                     }`}
                   >
                     {/* Nummer badge */}
-                    <span className="text-xs font-mono text-[#00d4ff]/50 flex-shrink-0 w-7">
-                      {num}
-                    </span>
+                    <IndexLabel
+                      current={i + 1}
+                      total={faqs.length}
+                      color="rgba(0,212,255,0.5)"
+                      className="flex-shrink-0 w-16 whitespace-nowrap"
+                    />
                     <span className="flex-1 font-semibold text-white text-sm leading-snug text-left">
                       {faq.question}
                     </span>

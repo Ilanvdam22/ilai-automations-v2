@@ -56,7 +56,7 @@ export default function CTA() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             Plan een gratis strategiegesprek. We kijken samen wat automatisering
-            voor jouw bedrijf in de bewegingssector kan betekenen.
+            voor jouw bedrijf kan betekenen.
           </motion.p>
 
           <motion.div

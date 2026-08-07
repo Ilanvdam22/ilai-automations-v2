@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Mail, Phone, ShieldCheck } from "lucide-react";
 import { LinkedinIcon, InstagramIcon } from "@/components/ui/social-icons";
+import { Headline } from "@/components/ui/headline";
 
 export const metadata: Metadata = {
   title: "Contact & Booking | ILAI Automations",
@@ -22,9 +23,9 @@ export default function ContactPage() {
               <span className="inline-block text-xs font-mono tracking-widest text-[#00d4ff] border border-[#00d4ff]/30 px-3 py-1 rounded-full mb-5 bg-[#00d4ff]/5">
                 Gratis gesprek
               </span>
-              <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-4">
+              <Headline as="h1" size="md" className="text-white mb-4">
                 Plan een gesprek
-              </h1>
+              </Headline>
               <p className="text-slate-400 leading-relaxed mb-10">
                 Kies een moment dat je uitkomt. We bespreken in 30 minuten wat
                 automatisering voor jouw business kan doen.
