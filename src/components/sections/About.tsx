@@ -16,7 +16,7 @@ export default function About() {
   return (
     <section
       id="over"
-      className="min-h-screen flex items-center px-4 py-36 bg-[#050508] relative"
+      className="min-h-screen flex items-center px-4 py-36 relative"
     >
       {/* Ambient glow achter chat demo */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#7c3aed]/5 blur-[140px] pointer-events-none" />

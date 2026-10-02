@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import OrbitingCirclesGlobe from "@/components/ui/orbiting-circles-02";
@@ -21,6 +22,16 @@ const wordVariants = {
 export default function Hero() {
   return (
     <div className="relative min-h-screen bg-[#050508] overflow-hidden">
+      {/* Achtergrondfoto onder de globe */}
+      <Image
+        src="/images/hero-stad.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-bottom opacity-90 pointer-events-none select-none"
+      />
+
       {/* Orbiting-circles globe i.p.v. 3D-bol */}
       <div className="absolute inset-0 flex items-center justify-center">
         <OrbitingCirclesGlobe />
@@ -41,7 +52,7 @@ export default function Hero() {
         >
           <span className="inline-flex items-center px-4 py-1.5 rounded-full border border-[#00d4ff]/40 text-[#00d4ff] text-xs font-mono tracking-widest bg-[#00d4ff]/5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#00d4ff] mr-2 animate-pulse" />
-            AI-automatisering voor B2B-bedrijven
+            AI-automatisering voor MKB en sport
           </span>
         </motion.div>
 

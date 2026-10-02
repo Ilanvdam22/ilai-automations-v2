@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageBackdrop from "@/components/layout/PageBackdrop";
 import { Mail, Phone, ShieldCheck } from "lucide-react";
 import { LinkedinIcon, InstagramIcon } from "@/components/ui/social-icons";
 import { Headline } from "@/components/ui/headline";
@@ -15,7 +16,9 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-[#050508] pt-24 pb-16 px-4">
+      <main className="relative min-h-screen bg-[#050508] pt-24 pb-16 px-4">
+        <PageBackdrop src="/images/pagina-contact.jpg" />
+        <div className="relative">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             {/* Linkerkolom */}
@@ -88,6 +91,7 @@ export default function ContactPage() {
             <div className="flex-1 w-full">
               <div className="rounded-2xl overflow-hidden" style={{ background: "transparent" }}>
                 <iframe
+                  title="Plan een gesprek met ILAI Automations"
                   src="https://api.leadconnectorhq.com/widget/booking/OWYzthi7EWvVPaMHvHn0"
                   style={{
                     width: "100%",
@@ -104,10 +108,10 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+      </div>
       </main>
       <Footer />
       <Script src="https://link.msgsndr.com/js/form_embed.js" strategy="lazyOnload" />
-
     </>
   );
 }

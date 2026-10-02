@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { MessageSquare, CalendarCheck, TrendingUp } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { Headline } from "@/components/ui/headline";
 import { IndexLabel } from "@/components/ui/index-label";
 
@@ -13,6 +14,7 @@ const features = [
       "Je AI-assistent beantwoordt Instagram-DM's en WhatsApp-berichten dag en nacht. Geen lead gaat meer verloren.",
     color: "#00d4ff",
     tint: "bg-[#00d4ff]/[0.05]",
+    image: "/images/home-247.jpg",
   },
   {
     icon: CalendarCheck,
@@ -21,6 +23,7 @@ const features = [
       "Slimme reminders en gepersonaliseerde opvolgsequenties halveren je no-show rate, volledig automatisch.",
     color: "#7c3aed",
     tint: "bg-[#7c3aed]/[0.06]",
+    image: "/images/home-noshows.jpg",
   },
   {
     icon: TrendingUp,
@@ -29,6 +32,7 @@ const features = [
       "Koude leads worden automatisch opgewarmd en door de funnel begeleid totdat ze betalend klant zijn.",
     color: "#00d4ff",
     tint: "bg-white/[0.02]",
+    image: "/images/home-klantreis.jpg",
   },
 ];
 
@@ -73,6 +77,15 @@ export default function HomeFeatures() {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.12 }}
             >
+              <div className="relative aspect-[16/10] w-full mb-8 overflow-hidden rounded-md border border-white/10">
+                <Image
+                  src={f.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
               <IndexLabel current={i + 1} total={features.length} className="block mb-8" />
               <Icon size={22} style={{ color: f.color }} className="mb-5" />
               <h3 className="font-heading font-medium uppercase tracking-tight text-lg text-white mb-3">

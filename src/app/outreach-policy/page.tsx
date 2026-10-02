@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageBackdrop from "@/components/layout/PageBackdrop";
 import { Mail } from "lucide-react";
 import { Headline } from "@/components/ui/headline";
 
@@ -14,7 +15,9 @@ export default function OutreachPolicyPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#050508] pt-32 pb-24 px-4">
+      <main className="relative bg-[#050508] pt-32 pb-24 px-4">
+        <PageBackdrop src="/images/pagina-faq.jpg" />
+        <div className="relative">
         <div className="max-w-3xl mx-auto">
           <Headline as="h1" size="lg" className="text-white mb-6">
             E-mail- en outreachbeleid
@@ -115,6 +118,7 @@ export default function OutreachPolicyPage() {
             </section>
           </div>
         </div>
+      </div>
       </main>
       <Footer />
     </>

@@ -1,31 +1,34 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageBackdrop from "@/components/layout/PageBackdrop";
 import Services from "@/components/sections/Services";
 import BottomSphere from "@/components/sections/BottomSphere";
-import { Briefcase, Building2, Users, ShoppingBag, GraduationCap, Store } from "lucide-react";
+import { Dumbbell, UserCheck, HeartPulse, Music, GraduationCap, Store } from "lucide-react";
 import { Headline } from "@/components/ui/headline";
 
 
 export const metadata: Metadata = {
   title: "Diensten | ILAI Automations",
-  description: "Bekijk onze AI-automatiseringsdiensten voor B2B-bedrijven: leadopvolging, cold outreach, WhatsApp- en e-mailagents en CRM-koppelingen.",
+  description: "Bekijk onze AI-automatiseringsdiensten voor MKB en sport: e-mail- en WhatsApp-agents, CRM-systeem en -automatisering, outreach en complete bedrijfsautomatisering.",
 };
 
 const industries = [
-  { icon: Briefcase, label: "Dienstverleners & Consultancy", desc: "Van eerste contact tot getekende opdracht, automatisch opgevolgd." },
-  { icon: Building2, label: "Vastgoed & Makelaardij", desc: "Elke aanvraag direct beantwoord, elke bezichtiging bevestigd." },
-  { icon: Users, label: "Recruitment & Bureaus", desc: "Kandidaten en opdrachtgevers automatisch op elkaar afgestemd." },
-  { icon: ShoppingBag, label: "E-commerce & Retail", desc: "Klantvragen en reviews afgehandeld zonder handmatig werk." },
+  { icon: Dumbbell, label: "Sportscholen & Gyms", desc: "Van proefles-aanvraag tot vast lid, automatisch opgevolgd." },
+  { icon: UserCheck, label: "Personal Trainers", desc: "Opvolging zonder handwerk, meer tijd voor je klanten." },
+  { icon: HeartPulse, label: "Fysiotherapeuten", desc: "Intake, herinneringen en opvolging op de achtergrond." },
+  { icon: Music, label: "Yoga- & Dansstudio's", desc: "Lessen vol en minder no-shows, zonder handmatig werk." },
   { icon: GraduationCap, label: "Coaches & Opleiders", desc: "Intakes, herinneringen en opvolging volledig geautomatiseerd." },
-  { icon: Store, label: "Lokale & MKB-bedrijven", desc: "Nooit meer een lead die tussen wal en schip valt." },
+  { icon: Store, label: "Overig MKB", desc: "Nooit meer een lead die tussen wal en schip valt." },
 ];
 
 export default function DienstenPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#050508]">
+      <main className="relative bg-[#050508]">
+        <PageBackdrop src="/images/pagina-diensten-3.jpg" />
+        <div className="relative">
         {/* Page header */}
         <div className="pt-40 pb-8 px-4 text-center max-w-3xl mx-auto">
           <span className="inline-block text-xs font-mono tracking-widest text-[#00d4ff] border border-[#00d4ff]/30 px-4 py-1.5 rounded-full mb-6 bg-[#00d4ff]/5">
@@ -52,11 +55,11 @@ export default function DienstenPage() {
                 Voor wie?
               </span>
               <Headline size="lg" className="text-white">
-                Voor elk bedrijf dat{" "}
-                <span className="gradient-text">wil groeien.</span>
+                Gebouwd voor{" "}
+                <span className="gradient-text">sport en MKB.</span>
               </Headline>
               <p className="text-slate-400 mt-4 max-w-xl mx-auto">
-                Of je nu een groeiende scale-up runt of solo-ondernemer bent, onze automatiseringen werken voor elk B2B-bedrijf dat leads en opvolging niet meer handmatig wil doen.
+                Onze focus ligt op sportscholen, PT&apos;ers en fysiotherapeuten. Maar elk MKB-bedrijf dat leads en opvolging niet meer handmatig wil doen, kan bij ons terecht.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -81,10 +84,10 @@ export default function DienstenPage() {
           </div>
         </div>
 
-      <BottomSphere />
+        <BottomSphere />
+      </div>
       </main>
       <Footer />
-
     </>
   );
 }

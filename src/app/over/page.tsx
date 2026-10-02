@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageBackdrop from "@/components/layout/PageBackdrop";
 import About from "@/components/sections/About";
 
 export const metadata: Metadata = {
   title: "Over ons | ILAI Automations",
-  description: "Leer meer over ILAI Automations en hoe wij B2B-bedrijven helpen met AI-automatisering voor leads, opvolging en outreach.",
+  description: "Leer meer over ILAI Automations en hoe wij MKB-bedrijven en de sportsector helpen met AI-automatisering voor leads, opvolging en outreach.",
 };
 
 const stats = [
-  { value: "< 2 min", label: "Gemiddelde responstijd" },
+  { value: "< 2 min", label: "Reactie op een nieuwe lead" },
   { value: "24/7", label: "Altijd actief, ook in het weekend" },
   { value: "5 stappen", label: "Van gesprek tot live automatisering" },
 ];
@@ -18,7 +19,9 @@ export default function OverPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#050508]">
+      <main className="relative bg-[#050508]">
+        <PageBackdrop src="/images/pagina-over.jpg" />
+        <div className="relative">
         <About />
 
         {/* Missie sectie */}
@@ -51,9 +54,9 @@ export default function OverPage() {
           </div>
         </div>
 
+      </div>
       </main>
       <Footer />
-
     </>
   );
 }

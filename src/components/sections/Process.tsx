@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Phone, Wrench, ClipboardCheck, Sliders, Rocket } from "lucide-react";
 import TiltCard from "@/components/ui/tilt-card";
@@ -19,9 +20,9 @@ const steps = [
   },
   {
     icon: ClipboardCheck,
-    title: "Review-call + prijsopgave",
+    title: "Review-call",
     description:
-      "We lopen samen door de gebouwde automatisering. Werkt alles zoals gewenst? Dan ontvang je een definitieve, transparante prijsopgave zonder verrassingen.",
+      "We lopen samen door de gebouwde automatisering. Werkt alles zoals jij het wilt? Je ziet precies wat er gebeurt en waar je eventueel nog iets anders wilt.",
   },
   {
     icon: Sliders,
@@ -39,7 +40,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="min-h-screen px-4 py-36 bg-[#050508] relative">
+    <section className="min-h-screen px-4 py-36 relative overflow-x-clip">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-24">
@@ -130,12 +131,12 @@ export default function Process() {
           <p className="text-slate-400 mb-8 text-lg">
             Klaar om te starten? Stap 1 begint met één gesprek.
           </p>
-          <a
+          <Link
             href="/contact"
             className="inline-block px-10 py-4 rounded-full bg-[#00d4ff] text-black font-bold text-base hover:bg-[#00d4ff]/90 transition-all duration-200 glow-blue"
           >
             Plan een gratis gesprek
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

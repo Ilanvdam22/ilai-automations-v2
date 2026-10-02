@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageBackdrop from "@/components/layout/PageBackdrop";
 import Process from "@/components/sections/Process";
 import { Check } from "lucide-react";
 import { Headline } from "@/components/ui/headline";
@@ -21,7 +22,9 @@ export default function ProcesPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#050508] pt-16">
+      <main className="relative bg-[#050508] pt-16">
+        <PageBackdrop src="/images/pagina-proces.jpg" />
+        <div className="relative">
         <Process />
 
         {/* Garantie sectie */}
@@ -50,9 +53,9 @@ export default function ProcesPage() {
             </div>
           </div>
         </div>
+      </div>
       </main>
       <Footer />
-
     </>
   );
 }

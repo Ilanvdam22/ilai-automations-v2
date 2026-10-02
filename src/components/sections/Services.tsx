@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, CalendarCheck, Send, Workflow, type LucideIcon } from "lucide-react";
+import { MessageSquare, Users, CalendarCheck, Send, Workflow, type LucideIcon } from "lucide-react";
 import { IndexLabel } from "@/components/ui/index-label";
 import { CornerBrackets } from "@/components/ui/corner-brackets";
 
@@ -11,56 +12,74 @@ type Service = {
   story: string;
   bullets: string[];
   tools: string[];
+  image: string;
 };
 
 const services: Service[] = [
   {
     icon: MessageSquare,
-    title: "E-mail & WhatsApp AI-Agent",
+    title: "E-mail agent & WhatsApp agent",
     story:
-      "Het is 23:40. Een potentiële klant stuurt een vraag via WhatsApp. Jij slaapt. Onze AI-agent leest het bericht, herkent wat er gevraagd wordt, antwoordt in jouw tone-of-voice en boekt zo nodig direct een afspraak in je agenda. Als jij morgenochtend wakker wordt, is de lead al warm.",
+      "De communicatie werkt voor je in plaats van andersom. Je WhatsApp agent reageert direct op binnenkomende berichten en je e-mail agent sorteert je inbox en zet concept-antwoorden voor je klaar. Geen enkele proefles-aanvraag of vraag blijft meer liggen.",
     bullets: [
-      "Beantwoordt vragen 24/7, in jouw stijl",
-      "Kwalificeert leads en boekt afspraken automatisch",
-      "Schakelt naadloos door naar jou bij twijfel",
+      "WhatsApp agent reageert automatisch op binnenkomende berichten",
+      "E-mail agent categoriseert mail en zet concept-antwoorden klaar",
+      "Geen proefles-aanvraag of vraag blijft nog liggen",
     ],
-    tools: ["GoHighLevel", "WhatsApp API", "n8n"],
+    tools: ["WhatsApp", "E-mail", "n8n"],
+    image: "/images/pilaar-agent.jpg",
+  },
+  {
+    icon: Users,
+    title: "CRM-systeem",
+    story:
+      "Klanten en deals komen vanzelf op de juiste plek, zonder handmatige invoer. Je ziet in één overzicht wie waar in het traject zit, en je formulieren, mail en WhatsApp zijn eraan gekoppeld.",
+    bullets: [
+      "Klanten automatisch in groepen",
+      "Overzicht van wie waar in het traject zit",
+      "Koppeling met formulieren, mail en WhatsApp",
+    ],
+    tools: ["GoHighLevel", "Make", "n8n"],
+    image: "/images/pilaar-crm.jpg",
   },
   {
     icon: CalendarCheck,
-    title: "Leadopvolging & Klantcommunicatie",
+    title: "CRM-automatisering",
     story:
-      "Een lead komt binnen, via je website, een advertentie of een aanbeveling, en landt automatisch op één centrale plek. Vanaf dat moment neemt het systeem het over: een welkomstmail binnen seconden, een herinnering vlak voor de afspraak zodat niemand meer wegblijft, en na afronding een vriendelijk verzoek om een review. Geen stap wordt overgeslagen, jij hoeft er niet aan te denken.",
+      "Opvolging en herinneringen lopen vanzelf. Een nieuwe afspraak wordt automatisch gemeld en bijgeschreven, klanten krijgen een herinnering en na de proefles volgt automatisch een bericht om te horen hoe ze het vonden.",
     bullets: [
-      "Welkomstmail direct na aanmelding",
-      "Automatische herinneringen voor afspraken",
-      "Review-verzoeken na afronding, zonder handmatig werk",
+      "Nieuwe afspraak wordt automatisch gemeld en bijgeschreven",
+      "Herinneringen voor afspraken",
+      "Follow-ups op proefles- en hoe-vond-je-de-les berichten",
     ],
     tools: ["GoHighLevel", "Make", "n8n"],
+    image: "/images/pilaar-automatisering.jpg",
   },
   {
     icon: Send,
-    title: "Cold Outreach via LinkedIn & E-mail",
+    title: "Outreach",
     story:
-      "Nieuwe klanten werven kost tijd: prospects zoeken, berichten personaliseren, opvolgen, weer opvolgen. Wij bouwen outreach-systemen die dit voor je overnemen. Gepersonaliseerde eerste berichten gaan automatisch de deur uit via LinkedIn en e-mail, follow-ups worden getimed verstuurd, en reacties komen rechtstreeks bij jou binnen. Jij voert het gesprek, niet de zoektocht ernaar.",
+      "Er blijven continu nieuwe aanvragen binnenkomen. We zetten gepersonaliseerde e-mails en LinkedIn-berichten voor je op, met de volgorde en timing automatisch geregeld.",
     bullets: [
-      "Doelgroeplijsten en persona's opbouwen",
-      "Gepersonaliseerde berichten + automatische follow-ups",
-      "Reacties direct zichtbaar, geen lead tussen wal en schip",
+      "Gepersonaliseerde e-mails en LinkedIn-berichten",
+      "Opgezet met Smartlead en Heyreach",
+      "Volgorde en timing automatisch geregeld",
     ],
-    tools: ["LinkedIn", "Smartlead", "Apollo"],
+    tools: ["Smartlead", "Heyreach", "LinkedIn"],
+    image: "/images/pilaar-outreach.jpg",
   },
   {
     icon: Workflow,
-    title: "CRM & Workflow-koppelingen",
+    title: "Complete bedrijfsautomatisering",
     story:
-      "Data staat vaak verspreid: in spreadsheets, mailboxen, losse tools die niet met elkaar praten. Wij koppelen jouw systemen aan elkaar, zodat een nieuwe klant, een afspraak of een betaling automatisch op de juiste plek terechtkomt. Geen dubbel werk, geen handmatig overtypen, geen data die verdwijnt tussen twee tools.",
+      "Alles hierboven, samen met de rest van je repetitieve taken, draait op de achtergrond. We brengen je handmatige werk in kaart, automatiseren het en sluiten al je systemen op elkaar aan. Zo maken we je bedrijf compleet AI-proof.",
     bullets: [
-      "Eén centrale plek voor al je klantdata",
-      "Automatische synchronisatie tussen je tools",
-      "Minder handwerk, minder fouten",
+      "Herhalende handmatige taken in kaart gebracht en geautomatiseerd",
+      "Alle systemen (mail, CRM, WhatsApp, outreach) op elkaar aangesloten",
+      "Bedrijf compleet AI-proof",
     ],
-    tools: ["GoHighLevel", "Make", "n8n"],
+    tools: ["n8n", "Make", "Claude"],
+    image: "/images/pilaar-compleet.jpg",
   },
 ];
 
@@ -68,6 +87,16 @@ function ServiceDetailBody({ service, showTitle = true }: { service: Service; sh
   const Icon = service.icon;
   return (
     <>
+      <div className="relative aspect-[16/10] w-full mb-6 overflow-hidden rounded-xl border border-white/10">
+        <Image
+          src={service.image}
+          alt=""
+          fill
+          sizes="(min-width: 768px) 560px, 100vw"
+          className="object-cover"
+        />
+      </div>
+
       <div className="flex items-start gap-5 mb-6">
         <div className="p-3.5 rounded-xl bg-[#00d4ff]/10 border border-[#00d4ff]/20 flex-shrink-0">
           <Icon size={24} className="text-[#00d4ff]" />
@@ -130,7 +159,7 @@ export default function Services() {
   const activeService = services[active];
 
   return (
-    <section id="diensten" className="px-4 py-36 bg-[#050508] relative">
+    <section id="diensten" className="px-4 py-36 relative">
       {/* Ambient glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-[800px] h-[600px] rounded-full bg-[#00d4ff]/3 blur-[160px]" />

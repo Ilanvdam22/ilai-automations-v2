@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import TiltCard from "@/components/ui/tilt-card";
@@ -15,7 +16,7 @@ const faqs = [
   {
     question: "Hoe lang duurt het om alles op te zetten?",
     answer:
-      "Gemiddeld 1 à 2 weken van het eerste gesprek tot live. Eenvoudige flows kunnen binnen enkele dagen klaar zijn. We houden je tijdens het gehele proces op de hoogte.",
+      "De eerste automatiseringen staan meestal binnen 1 tot 3 weken live. In de eerste maand bouwen we het complete systeem, daarna verbeteren we het doorlopend. We houden je tijdens het hele proces op de hoogte.",
   },
   {
     question: "Heb ik technische kennis nodig om dit te gebruiken?",
@@ -25,7 +26,7 @@ const faqs = [
   {
     question: "Werkt dit ook voor kleine bedrijven?",
     answer:
-      "Absoluut. We werken met dienstverleners, bureaus, makelaars, e-commerce en andere B2B-bedrijven. Juist voor solo-ondernemers en kleine teams is automatisering het meest waardevol. Het geeft jou je tijd terug.",
+      "Absoluut. Onze focus ligt op sportscholen, personal trainers en fysiotherapeuten, maar we werken voor elk MKB-bedrijf. Juist voor solo-ondernemers en kleine teams is automatisering het meest waardevol. Het geeft jou je tijd terug.",
   },
   {
     question: "Wat als de automatisering niet doet wat ik wil?",
@@ -48,9 +49,9 @@ const faqs = [
       "Ja. We bouwen modulair, zodat je eenvoudig nieuwe flows kunt toevoegen naarmate je bedrijf groeit. Je begint klein en schaalt op wanneer jij dat wilt.",
   },
   {
-    question: "Zit ik vast aan een contract of kan ik stoppen wanneer ik wil?",
+    question: "Hoe lang loopt een traject?",
     answer:
-      "Je zit nergens aan vast. We werken op basis van duidelijke afspraken per project, zonder langlopende verplichtingen of automatische verlengingen.",
+      "Een traject loopt zes maanden. In de eerste maand bouwen we alles, daarna verbeteren we het doorlopend. Aan het einde evalueren we samen of je verlengt. Er is geen automatische verlenging.",
   },
 ];
 
@@ -58,7 +59,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="min-h-screen px-4 py-36 bg-[#050508]">
+    <section className="min-h-screen px-4 py-36">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
@@ -102,6 +103,7 @@ export default function FAQ() {
                 >
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
+                    aria-expanded={isOpen}
                     className={`w-full text-left px-6 py-5 glass rounded-xl flex items-center gap-4 transition-all duration-200 ${
                       isOpen ? "rounded-b-none" : ""
                     }`}
@@ -155,12 +157,12 @@ export default function FAQ() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-slate-500 mb-6">Staat jouw vraag er niet bij?</p>
-          <a
+          <Link
             href="/contact"
             className="inline-block px-8 py-3.5 rounded-full border border-[#00d4ff]/40 text-[#00d4ff] font-semibold hover:bg-[#00d4ff]/10 transition-all duration-200"
           >
             Stel je vraag direct →
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

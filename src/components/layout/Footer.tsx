@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import { LinkedinIcon, InstagramIcon } from "@/components/ui/social-icons";
 
@@ -18,7 +19,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-slate-500 text-sm leading-relaxed">
-              AI-automatisering voor B2B-bedrijven in Nederland.
+              AI-automatisering voor MKB-bedrijven in Nederland, met focus op sport en beweging.
             </p>
           </div>
 
@@ -30,17 +31,19 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {[
                 { label: "Home", href: "/" },
-                { label: "Diensten", href: "#diensten" },
-                { label: "Over ons", href: "#over" },
+                { label: "Diensten", href: "/diensten" },
+                { label: "Proces", href: "/proces" },
+                { label: "Over ons", href: "/over" },
+                { label: "FAQ", href: "/faq" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-slate-400 hover:text-[#00d4ff] transition-colors text-sm"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -53,13 +56,19 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {[
-                "E-mail & WhatsApp AI-Agent",
-                "Leadopvolging & Communicatie",
-                "Cold Outreach (LinkedIn & E-mail)",
-                "CRM & Workflow-koppelingen",
+                "E-mail agent & WhatsApp agent",
+                "CRM-systeem",
+                "CRM-automatisering",
+                "Outreach",
+                "Complete bedrijfsautomatisering",
               ].map((item) => (
                 <li key={item}>
-                  <span className="text-slate-400 text-sm">{item}</span>
+                  <Link
+                    href="/diensten"
+                    className="text-slate-400 hover:text-[#00d4ff] transition-colors text-sm"
+                  >
+                    {item}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -119,9 +128,12 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 text-sm">
-            © 2025 ILAI Automations. Alle rechten voorbehouden.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-slate-500 text-sm">
+            <p>© {new Date().getFullYear()} ILAI Automations. Alle rechten voorbehouden.</p>
+            <Link href="/outreach-policy" className="hover:text-[#00d4ff] transition-colors">
+              Outreachbeleid
+            </Link>
+          </div>
           <div className="flex items-center gap-4">
             <a
               href="https://www.linkedin.com/company/ilai-automations/"

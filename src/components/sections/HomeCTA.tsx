@@ -28,7 +28,7 @@ export default function HomeCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Plan een gratis strategiegesprek of bekijk eerst wat we voor anderen gebouwd hebben.
+          Plan een gratis kennismaking of bekijk eerst de vijf pilaren van ons aanbod.
         </motion.p>
         <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"

@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageBackdrop from "@/components/layout/PageBackdrop";
 import FAQ from "@/components/sections/FAQ";
 import { Mail, Phone } from "lucide-react";
 import { Headline } from "@/components/ui/headline";
 
 export const metadata: Metadata = {
   title: "Veelgestelde vragen | ILAI Automations",
-  description: "Antwoorden op de meest gestelde vragen over AI-automatisering voor B2B-bedrijven.",
+  description: "Antwoorden op de meest gestelde vragen over AI-automatisering voor MKB-bedrijven en de sportsector.",
 };
 
 export default function FAQPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-[#050508] pt-16">
+      <main className="relative bg-[#050508] pt-16">
+        <PageBackdrop src="/images/pagina-faq.jpg" />
+        <div className="relative">
         <FAQ />
 
         {/* Uitgebreide contact-sectie */}
@@ -28,7 +31,7 @@ export default function FAQPage() {
                 </Headline>
                 <p className="text-slate-400 leading-relaxed">
                   We beantwoorden hem graag persoonlijk. Stuur ons een berichtje via WhatsApp of
-                  e-mail. We reageren binnen 2 minuten.
+                  e-mail. We reageren dezelfde dag.
                 </p>
               </div>
               {/* Rechts: contactmogelijkheden */}
@@ -53,9 +56,9 @@ export default function FAQPage() {
             </div>
           </div>
         </div>
+      </div>
       </main>
       <Footer />
-
     </>
   );
 }
