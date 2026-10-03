@@ -50,7 +50,7 @@ const services: Service[] = [
     bullets: [
       "Nieuwe afspraak wordt automatisch gemeld en bijgeschreven",
       "Herinneringen voor afspraken",
-      "Follow-ups op proefles- en hoe-vond-je-de-les berichten",
+      "Follow-ups na de proefles, zoals het bericht \"Hoe vond je de les?\"",
     ],
     tools: ["GoHighLevel", "Make", "n8n"],
     image: "/images/pilaar-automatisering.jpg",
