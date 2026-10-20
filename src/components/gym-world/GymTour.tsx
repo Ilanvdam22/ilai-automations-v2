@@ -40,6 +40,8 @@ export default function GymTour({ trackRef }: { trackRef: RefObject<HTMLDivEleme
   // Bij welke stop staat de camera stil (null = onderweg)
   const [at, setAt] = useState<number | null>(0);
   const [found, setFound] = useState(0);
+  // Of de stappen-uitleg in de kaart is uitgeklapt
+  const [open, setOpen] = useState(false);
 
   // De uitleg staat naast het bolletje van de zone, met een lijntje ertussen
   const placeCard = useCallback(() => {
@@ -199,11 +201,14 @@ export default function GymTour({ trackRef }: { trackRef: RefObject<HTMLDivEleme
   const zone = zoneIndex !== null ? ZONES[zoneIndex] : null;
   const atEnd = introDone && at === LAST;
 
-  // Nieuwe zone: kaart meteen goed zetten, ook als de camera al stilstaat
+  // Nieuwe zone: uitleg weer dicht
+  useEffect(() => setOpen(false), [zoneIndex]);
+
+  // Kaart meteen goed zetten (nieuwe zone of uitgeklapt), ook als de camera stilstaat
   useLayoutEffect(() => {
     zoneRef.current = zoneIndex;
     placeCard();
-  }, [zoneIndex, placeCard]);
+  }, [zoneIndex, open, placeCard]);
 
   return (
     <div ref={rootRef} className="absolute inset-0">
@@ -298,7 +303,7 @@ export default function GymTour({ trackRef }: { trackRef: RefObject<HTMLDivEleme
             key={zone.id}
             aria-labelledby="gym-card-title"
             style={{ visibility: "hidden" }}
-            className="absolute left-0 top-0 z-30 w-[20rem] max-w-[calc(100%-2rem)] border border-white/20 bg-black p-5"
+            className="absolute left-0 top-0 z-30 max-h-[calc(100%-6rem)] w-[20rem] max-w-[calc(100%-2rem)] overflow-y-auto overscroll-contain border border-white/20 bg-black p-5"
           >
             <p className="font-mono text-xs tracking-[0.2em] text-accent">
               {String(zoneIndex + 1).padStart(2, "0")} / {String(ZONES.length).padStart(2, "0")} · {zone.label.toUpperCase()}
@@ -314,10 +319,26 @@ export default function GymTour({ trackRef }: { trackRef: RefObject<HTMLDivEleme
               <span className="font-medium text-white">Met ILAI: </span>
               {zone.solution}
             </p>
+            {open && (
+              <ol id="gym-card-steps" className="mt-5 border-t border-white/15">
+                {zone.steps.map((step, k) => (
+                  <li key={step} className="grid grid-cols-[1.75rem_1fr] border-b border-white/15 py-3 text-sm leading-relaxed text-white/85">
+                    <span className="font-mono text-xs leading-relaxed text-accent">{String(k + 1).padStart(2, "0")}</span>
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            )}
             <div className="mt-5 flex flex-wrap items-center gap-4">
-              <Link href={zone.href} className="bg-accent px-4 py-2 text-sm font-medium text-black hover:bg-white">
-                Bekijk hoe dit werkt
-              </Link>
+              <button
+                type="button"
+                onClick={() => setOpen((o) => !o)}
+                aria-expanded={open}
+                aria-controls="gym-card-steps"
+                className="bg-accent px-4 py-2 text-sm font-medium text-black hover:bg-white"
+              >
+                {open ? "Sluit uitleg" : "Bekijk hoe dit werkt"}
+              </button>
               <span className="text-sm text-white/65">Scroll verder</span>
             </div>
           </section>

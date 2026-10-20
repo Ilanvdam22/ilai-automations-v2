@@ -14,6 +14,8 @@ export type Zone = {
   solution: string;
   /** Anker op /diensten */
   href: string;
+  /** Uitleg in stappen, klapt uit in de kaart bij "Bekijk hoe dit werkt" */
+  steps: string[];
   /** Waar de marker in 3D staat */
   hotspot: Vec3;
   /** Plek op de plattegrond (x, z) als die afwijkt van de marker, zodat punten niet overlappen */
@@ -30,6 +32,11 @@ export const ZONES: Zone[] = [
     problem: "Een aanvraag via je site of Instagram blijft liggen tot jij er tijd voor hebt.",
     solution: "Elke nieuwe aanvraag krijgt binnen 2 minuten automatisch antwoord en staat meteen in je overzicht.",
     href: "/diensten#agents",
+    steps: [
+      "Er komt een aanvraag binnen via je site, Instagram of een formulier.",
+      "Binnen 2 minuten krijgt diegene automatisch een persoonlijk antwoord.",
+      "De lead staat meteen in je overzicht, zodat er niets blijft liggen.",
+    ],
     hotspot: [-3.9, 1.3, 3.32],
     view: { pos: [-1.6, 1.6, 5.3], look: [-4.3, 1.0, 3.1] },
   },
@@ -40,6 +47,11 @@ export const ZONES: Zone[] = [
     problem: "Vragen en proefles-aanvragen via WhatsApp beantwoord je pas 's avonds.",
     solution: "De WhatsApp agent reageert automatisch, plant de proefles in en stuurt een herinnering.",
     href: "/diensten#agents",
+    steps: [
+      "Iemand appt je zaak met een vraag of wil een proefles.",
+      "De WhatsApp agent beantwoordt de vraag en stelt een moment voor.",
+      "De proefles staat in je agenda en er gaat vanzelf een herinnering uit.",
+    ],
     hotspot: [-5.25, 1.45, 3.1],
     mapAt: [-6.4, 4.4],
     view: { pos: [-4.7, 1.55, 4.2], look: [-5.25, 1.22, 3.1] },
@@ -51,6 +63,11 @@ export const ZONES: Zone[] = [
     problem: "Leden en leads staan verspreid over je mail, WhatsApp en losse lijstjes.",
     solution: "Iedereen komt vanzelf in de juiste groep en je ziet in één overzicht wie waar in het traject zit.",
     href: "/diensten#crm-systeem",
+    steps: [
+      "Je formulieren, mail en WhatsApp worden gekoppeld aan één CRM.",
+      "Elke nieuwe lead of klant komt vanzelf in de juiste groep.",
+      "Jij ziet in één overzicht wie waar in het traject zit.",
+    ],
     hotspot: [-6.3, 1.6, -4.6],
     view: { pos: [-4.4, 1.6, -1.6], look: [-6.3, 1.1, -4.5] },
   },
@@ -61,6 +78,11 @@ export const ZONES: Zone[] = [
     problem: "Je inbox loopt vol en na een proefles hoor je vaak niets meer.",
     solution: "De e-mail agent sorteert je mail en zet antwoorden klaar. Na de proefles gaat er vanzelf een bericht uit: hoe vond je de les?",
     href: "/diensten#crm-automatisering",
+    steps: [
+      "De e-mail agent sorteert je inbox en zet antwoorden voor je klaar.",
+      "Jij leest ze na en drukt op verzenden.",
+      "Na een proefles gaat er vanzelf een bericht uit: hoe vond je de les?",
+    ],
     hotspot: [4.8, 1.68, 4.0],
     view: { pos: [3.2, 1.6, 5.3], look: [4.8, 1.3, 4.0] },
   },
@@ -71,6 +93,11 @@ export const ZONES: Zone[] = [
     problem: "Administratie en opvolging kosten je uren die je liever op de vloer staat.",
     solution: "De andere vier punten draaien op de achtergrond. Jij hebt je tijd terug voor je leden.",
     href: "/diensten#compleet",
+    steps: [
+      "In een gratis gesprek brengen we in kaart waar jouw tijd in gaat zitten.",
+      "Binnen 1 tot 3 weken staan je automatiseringen live.",
+      "Alles draait op de achtergrond, jij staat op de vloer.",
+    ],
     hotspot: [1.75, 1.7, -3.3],
     view: { pos: [0.4, 2.4, 2.6], look: [1.8, 0.8, -3.4] },
   },
