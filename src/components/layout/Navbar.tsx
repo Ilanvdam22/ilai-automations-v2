@@ -1,129 +1,88 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "/" },
   { label: "Diensten", href: "/diensten" },
   { label: "Proces", href: "/proces" },
-  { label: "Over ons", href: "/over" },
+  { label: "Over", href: "/over" },
   { label: "FAQ", href: "/faq" },
 ];
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+/**
+ * Klein menu: links de pagina's, in het midden de naam, rechts de knop.
+ * `overlay` is voor de homepage (geen achtergrond, de 3D-wereld loopt eronder door);
+ * met `solid` krijgt hij toch een achtergrond, zodra je voorbij de 3D-reis scrolt.
+ */
+export default function Navbar({ overlay = false, solid = false }: { overlay?: boolean; solid?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  // Menu dicht bij navigeren, en geen scrollen achter het open menu
+  useEffect(() => setMenuOpen(false), [pathname]);
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    document.documentElement.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.documentElement.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#050508]/80 backdrop-blur-md border-b border-[#00d4ff]/20 shadow-[0_0_20px_rgba(0,212,255,0.05)]"
-          : "bg-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 ${overlay && !solid ? "" : "border-b border-white/10 bg-black"}`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-baseline gap-1.5">
-          <span className="font-heading font-medium text-2xl text-[#00d4ff] uppercase tracking-wide glow-text">
-            ILAI
-          </span>
-          <span className="font-mono text-[10px] text-slate-400 font-light tracking-widest uppercase">
-            Automations
-          </span>
-        </Link>
-
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`font-mono text-xs uppercase tracking-widest transition-colors duration-200 relative group ${
-                  isActive ? "text-[#00d4ff]" : "text-slate-400 hover:text-white"
-                }`}
-              >
-                {link.label}
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute -bottom-0.5 left-0 right-0 h-px bg-[#00d4ff]"
-                  />
-                )}
-              </Link>
-            );
-          })}
-          <Link
-            href="/contact"
-            className="font-mono text-xs uppercase tracking-widest font-semibold bg-[#00d4ff] text-black px-5 py-2 rounded-full hover:bg-[#00d4ff]/90 transition-all duration-200 glow-blue"
-          >
-            Plan een gesprek
-          </Link>
-        </div>
-
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden text-slate-400 hover:text-white transition-colors"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Menu sluiten" : "Menu openen"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </nav>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-[#050508]/95 backdrop-blur-md border-b border-[#00d4ff]/20 px-4 pb-6 pt-2"
-          >
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
+      <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center px-6 text-sm sm:px-10">
+        <nav aria-label="Hoofdmenu" className="justify-self-start">
+          <ul className="hidden items-center gap-6 md:flex">
+            {navLinks.map((link) => {
+              const active = pathname === link.href;
+              return (
+                <li key={link.href}>
                   <Link
-                    key={link.href}
                     href={link.href}
-                    className={`py-3 border-b border-white/5 font-mono text-xs uppercase tracking-widest transition-colors ${
-                      isActive ? "text-[#00d4ff] font-semibold" : "text-slate-300 hover:text-white"
-                    }`}
-                    onClick={() => setMenuOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={active ? "text-white underline underline-offset-[6px]" : "text-white/75 hover:text-white"}
                   >
                     {link.label}
                   </Link>
-                );
-              })}
-              <Link
-                href="/contact"
-                className="font-mono text-xs uppercase tracking-widest font-semibold bg-[#00d4ff] text-black px-5 py-3 rounded-full text-center hover:bg-[#00d4ff]/90 transition-all duration-200 mt-3"
-                onClick={() => setMenuOpen(false)}
-              >
-                Plan een gesprek
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                </li>
+              );
+            })}
+          </ul>
+          <button
+            type="button"
+            className="text-white md:hidden"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
+            aria-controls="mobiel-menu"
+          >
+            {menuOpen ? "Sluiten" : "Menu"}
+          </button>
+        </nav>
+
+        <Link href="/" className="font-heading font-semibold tracking-[-0.01em] text-white">
+          ILAI Automations
+        </Link>
+
+        <Link href="/contact" className="justify-self-end bg-accent px-3.5 py-1.5 font-medium text-black hover:bg-white">
+          Gesprek
+        </Link>
+      </div>
+
+      {menuOpen && (
+        <nav id="mobiel-menu" aria-label="Mobiel menu" className="fixed inset-x-0 bottom-0 top-16 z-50 bg-black px-6 pt-8 md:hidden">
+          <ul className="flex flex-col">
+            {[{ label: "Home", href: "/" }, ...navLinks, { label: "Contact", href: "/contact" }].map((link) => (
+              <li key={link.href} className="border-b border-white/10">
+                <Link href={link.href} className="block py-4 font-heading text-2xl font-semibold text-white">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }

@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const base = "https://www.ilaiautomations.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ["", "/diensten", "/proces", "/over", "/faq", "/contact", "/outreach-policy"].map(
+  return ["", "/diensten", "/proces", "/over", "/faq", "/contact", "/privacy", "/outreach-policy"].map(
     (path) => ({
       url: `${base}${path}`,
       changeFrequency: "monthly",

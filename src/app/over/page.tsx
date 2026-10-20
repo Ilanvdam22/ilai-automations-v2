@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import PageBackdrop from "@/components/layout/PageBackdrop";
-import About from "@/components/sections/About";
+import Link from "next/link";
+import Page from "@/components/site/Page";
+import { Arrow, PageTitle, Section, body, button, h2 } from "@/components/site/ui";
 
 export const metadata: Metadata = {
   title: "Over ons | ILAI Automations",
-  description: "Leer meer over ILAI Automations en hoe wij MKB-bedrijven en de sportsector helpen met AI-automatisering voor leads, opvolging en outreach.",
+  description:
+    "Leer meer over ILAI Automations en hoe wij MKB-bedrijven en de sportsector helpen met AI-automatisering voor leads, opvolging en outreach.",
 };
+
+const bullets = [
+  "24/7 beschikbaar, ook in het weekend",
+  "Gebouwd op bewezen tools: GHL, n8n, Make",
+  "Geen technische kennis vereist van jouw kant",
+];
 
 const stats = [
   { value: "< 2 min", label: "Reactie op een nieuwe lead" },
@@ -17,46 +23,56 @@ const stats = [
 
 export default function OverPage() {
   return (
-    <>
-      <Navbar />
-      <main className="relative bg-[#050508]">
-        <PageBackdrop src="/images/pagina-over.jpg" />
-        <div className="relative">
-        <About />
+    <Page crumbs={[{ name: "Over", path: "/over" }]}>
+      <PageTitle
+        title="Nooit meer een aanvraag die in een volle inbox verdwijnt."
+        intro="Elke week laten bedrijven omzet liggen, niet omdat hun product of dienst niet goed is, maar omdat opvolging tijdrovend is. ILAI Automations lost dat op. Wij bouwen AI-systemen die jouw berichten beantwoorden, leads kwalificeren en nieuwe klanten actief benaderen. Volledig op de achtergrond. Altijd aan."
+      />
 
-        {/* Missie sectie */}
-        <div className="px-4 py-24 border-t border-white/5">
-          <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block text-xs font-mono tracking-widest text-[#00d4ff] border border-[#00d4ff]/30 px-4 py-1.5 rounded-full mb-8 bg-[#00d4ff]/5">
-              Onze missie
-            </span>
-            <blockquote className="font-heading font-medium uppercase tracking-tight leading-[0.95] text-3xl sm:text-4xl md:text-5xl text-white mb-8">
-              &ldquo;Elke ondernemer verdient meer tijd voor zijn bedrijf,{" "}
-              <span className="gradient-text">niet voor zijn inbox.</span>&rdquo;
-            </blockquote>
-            <p className="text-slate-400 text-lg leading-relaxed">
-              ILAI Automations is opgericht vanuit één overtuiging: ondernemers die hun bedrijf
-              laten groeien, moeten niet vastzitten aan administratie en opvolging. Wij nemen dat over, met AI die
-              nooit slaapt, nooit vergeet en altijd op tijd reageert.
-            </p>
-          </div>
+      <Section>
+        <ul className="max-w-2xl border-t border-white/10">
+          {bullets.map((b) => (
+            <li key={b} className="border-b border-white/10 py-4 text-lg text-white/85">
+              {b}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section>
+        <blockquote className={`${h2} max-w-4xl`}>
+          &ldquo;Elke ondernemer verdient meer tijd voor zijn bedrijf, niet voor zijn inbox.&rdquo;
+        </blockquote>
+        <p className={`${body} mt-8 max-w-2xl text-lg`}>
+          ILAI Automations is opgericht vanuit één overtuiging: ondernemers die hun bedrijf laten groeien, moeten niet vastzitten aan
+          administratie en opvolging. Wij nemen dat over, met AI die nooit slaapt, nooit vergeet en altijd op tijd reageert.
+        </p>
+      </Section>
+
+      <Section>
+        <dl className="grid gap-12 sm:grid-cols-3">
+          {stats.map((s) => (
+            <div key={s.label}>
+              <dt className="sr-only">{s.label}</dt>
+              <dd className="font-heading text-5xl font-bold tracking-[-0.04em] text-white">{s.value}</dd>
+              <dd className="mt-3 text-white/75">{s.label}</dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
+      <Section>
+        <h2 className={h2}>Meer weten?</h2>
+        <div className="mt-8 flex flex-wrap items-center gap-6">
+          <Link href="/contact" className={button}>
+            Plan een gesprek
+            <Arrow />
+          </Link>
+          <Link href="/diensten" className="text-white underline decoration-white/40 underline-offset-[6px] hover:text-accent">
+            Bekijk de diensten
+          </Link>
         </div>
-
-        {/* Stats sectie */}
-        <div className="px-4 py-20 border-t border-white/5">
-          <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
-            {stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-3">
-                <span className="text-5xl font-black text-[#00d4ff] glow-text">{stat.value}</span>
-                <span className="font-mono uppercase tracking-widest text-slate-500 text-xs max-w-[160px]">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </div>
-      </main>
-      <Footer />
-    </>
+      </Section>
+    </Page>
   );
 }
